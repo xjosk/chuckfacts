@@ -1,0 +1,23 @@
+<br>
+<button (click)="[getRandomJoke()]" class="btn btn-primary">Get random joke</button>
+<br><br>
+<h4>{{randomJoke}}</h4>
+<br>
+<span class="h3">Search joke</span>
+&nbsp;
+<input type="text" [(ngModel)]="query">
+&nbsp;
+<button (click)="[getJokeByQuery(query)]" class="btn btn-secondary">Search</button>
+<ul>
+    <li *ngFor="let item of jokes | paginate: { itemsPerPage: 10, currentPage: p } ">
+        {{item.value}}
+    </li>
+</ul>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<br>
+<br>
+<h3>Categories</h3>
+<span class="h4" *ngFor="let item of categories">
+    <a href="javascript:void(0)" (click)="[getJokeByCategory(item)]" class="link-success">{{item}}</a>
+    &nbsp;
+</span>
